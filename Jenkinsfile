@@ -1,23 +1,10 @@
 pipeline {
-    agent any
-         tools { 
-        maven 'Maven-3.9.8' 
-        jdk 'JDK-22' 
-    }
+    agent { dockerfile true }
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-        stage('Test') { 
-            steps {
-                sh 'mvn test' 
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml' 
-                }
+                sh 'node --version'
+                sh 'svn --version'
             }
         }
     }
