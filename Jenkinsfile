@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'mvn -B -DskipTests clean package' 
+                 container ('maven'){
+                  sh 'mvn version'
+                }
             }
         }
     }
